@@ -45,7 +45,7 @@ public class HelloController {
         return hello;
     }
 
-    static class Hello{
+     class Hello{
         private String name;
 
         public String getName() {
