@@ -43,4 +43,9 @@ public class MemoryMemberRepository implements MemberRepository {
     public List<Member> findAll() {
         return store.values().stream().collect(Collectors.toList());
     }
+
+    @Override
+    public void clearStore() {
+        store.clear();
+    }
 }
