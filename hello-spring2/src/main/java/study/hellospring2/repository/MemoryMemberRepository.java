@@ -1,5 +1,6 @@
 package study.hellospring2.repository;
 
+import org.springframework.stereotype.Repository;
 import study.hellospring2.domain.Member;
 
 import java.util.*;
@@ -9,6 +10,7 @@ import java.util.stream.Collectors;
  * 아직 데이터 저장소가 선정되지 않음(가상의 시나리오)
  * 해당 강의에서는 store라는 Map자료구조 구현체를 통해 구현한다.
  */
+@Repository
 public class MemoryMemberRepository implements MemberRepository {
 
     private static Map<Long, Member> store = new HashMap<>();
