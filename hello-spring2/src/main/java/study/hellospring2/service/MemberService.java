@@ -9,7 +9,6 @@ import study.hellospring2.repository.MemoryMemberRepository;
 import java.util.List;
 import java.util.Optional;
 
-@Service
 public class MemberService {
 
     private final MemberRepository memberRepository;
