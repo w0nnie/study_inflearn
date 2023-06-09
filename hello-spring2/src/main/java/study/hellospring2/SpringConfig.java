@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import study.hellospring2.repository.JdbcMemberRepository;
+import study.hellospring2.repository.JdbcTemplateMemberRepository;
 import study.hellospring2.repository.MemberRepository;
 import study.hellospring2.repository.MemoryMemberRepository;
 import study.hellospring2.service.MemberService;
@@ -31,7 +32,8 @@ public class SpringConfig {
     // 기존에 Memory를 이용한 구현체에서 Jdbc repo로 변경
     @Bean
     public MemberRepository memberRepository(){
-        return new JdbcMemberRepository(dataSource);
+        return new JdbcTemplateMemberRepository(dataSource);
+//        return new JdbcMemberRepository(dataSource);
     }
 
 
