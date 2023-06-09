@@ -3,21 +3,21 @@ package study.hellospring2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import study.hellospring2.repository.JdbcMemberRepository;
-import study.hellospring2.repository.JdbcTemplateMemberRepository;
-import study.hellospring2.repository.MemberRepository;
-import study.hellospring2.repository.MemoryMemberRepository;
+import study.hellospring2.repository.*;
 import study.hellospring2.service.MemberService;
 
+import javax.persistence.EntityManager;
 import javax.sql.DataSource;
 
 @Configuration
 public class SpringConfig {
 
     private DataSource dataSource;
+    private EntityManager entityManager;
     @Autowired
-    public SpringConfig(DataSource dataSource) {
+    public SpringConfig(DataSource dataSource, EntityManager entityManager) {
         this.dataSource = dataSource;
+        this.entityManager = entityManager;
     }
 
     //Bean 객체 만들어줄껀데
@@ -32,7 +32,8 @@ public class SpringConfig {
     // 기존에 Memory를 이용한 구현체에서 Jdbc repo로 변경
     @Bean
     public MemberRepository memberRepository(){
-        return new JdbcTemplateMemberRepository(dataSource);
+        return new JpaMemberRepository(entityManager);
+//        return new JdbcTemplateMemberRepository(dataSource);
 //        return new JdbcMemberRepository(dataSource);
     }
 

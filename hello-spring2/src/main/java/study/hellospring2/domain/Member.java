@@ -1,10 +1,18 @@
 package study.hellospring2.domain;
 
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 /**
  * 데이터: 회원ID, 이름
  */
+@Entity
 public class Member {
-
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //Member table에 pk = id, id = 자동채번(DB)
     private Long id;
     private String name;
 
