@@ -1,8 +1,10 @@
 package study.hellospring2;
 
+import com.sun.jdi.PathSearchingVirtualMachine;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import study.hellospring2.aop.TimeTraceAop;
 import study.hellospring2.repository.*;
 import study.hellospring2.service.MemberService;
 
@@ -31,6 +33,12 @@ public class SpringConfig {
     public MemberService memberService() {
         return new MemberService(memberRepository);
     }
+
+
+//    @Bean
+//    public TimeTraceAop timeTraceAop() {
+//        return timeTraceAop();
+//    }
 
     // 기존에 Memory를 이용한 구현체에서 Jdbc repo로 변경
 //    @Bean
