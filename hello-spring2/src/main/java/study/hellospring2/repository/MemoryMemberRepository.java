@@ -43,7 +43,6 @@ public class MemoryMemberRepository implements MemberRepository {
         return store.values().stream().collect(Collectors.toList());
     }
 
-    @Override
     public void clearStore() {
         store.clear();
     }
