@@ -1,4 +1,4 @@
-# 김영한님의 강의 저장 Repo
+# inflearn 강의 Repo
 
 ---
 
