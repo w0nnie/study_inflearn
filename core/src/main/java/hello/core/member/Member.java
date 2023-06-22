@@ -27,4 +27,12 @@ public class Member {
     public void setName(String name) {
         this.name = name;
     }
+
+    public Grade getGrade() {
+        return grade;
+    }
+
+    public void setGrade(Grade grade) {
+        this.grade = grade;
+    }
 }
