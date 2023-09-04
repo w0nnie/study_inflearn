@@ -108,7 +108,7 @@ new AnnotationConfigApplicationContext(AppConfig.class);
 - 빈을 관리하고 검색하는 기능을 BeanFactory가 제공해주는데, 그러면 둘의 차이가 뭘까?
 - 애플리케이션을 개발할 때는 빈을 관리하고 조회하는 기능은 물론이고, 수 많은 부가기능이 필요하다.
 
-# 정리
+#### 정리
 - ApplicationContext는 BeanFactory의 기능을 상속받는다.
 - ApplicationContext는 빈 관리기능 + 편리한 부가 기능을 제공한다.
 - BeanFactory를 직접 사용할 일은 거의 없다. 부가기능이 포함된 ApplicationContext를 사용한다.
@@ -116,3 +116,9 @@ new AnnotationConfigApplicationContext(AppConfig.class);
 
 ---
 
+### 싱글톤
+
+- 우리가 만들었던 스프링 없는 순수한 DI 컨테이너인 AppConfig는 요청을 할 때 마다 객체를 새로 생성한다.
+- 고객 트래픽이 초당 100이 나오면 초당 100개 객체가 생성되고 소멸된다 -> 메모리 낭비 심함
+- 해결 방안은 해당 객체가 딱 1개만 생성되고, 공유하도록 설계하면 된다 - > 싱글톤
+- JVM내에 특정 객체의 인스턴스가 하나만 존재해야할때 사용하는 디자인패턴 -> 싱글톤 패턴
