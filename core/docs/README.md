@@ -134,3 +134,8 @@ new AnnotationConfigApplicationContext(AppConfig.class);
   - 필드 대신에 자바에서 공유되지 않는, 지역변수, 파라미터, threacLocal 사용
 - 스프링 빈의 필드에 공유 값을 설정하면 큰 장애가 발생할 수 있다.
 - 문제점 예시 : statefulServiceTest
+
+### @Configuration
+
+- @Bean만 사용해도 스프링 빈으로 등록은되지만, 싱글톤을 보장하지않는다
+- @Configuration 어노테이션 사용시 직접 빈으로 등록되는것이 아닌 CGLIB을 통해 빈객체로 등록되고 싱글톤을 보장한다
