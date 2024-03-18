@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<diagram version="1" name="physical-data-modeling.erd">
+	<entities>
+		<data-source id="mysql8-18e4f8944ec-30463ba0bad62b14">
+			<entity id="1" name="customer" fq-name="`database-modeling`.customer" order="0" x="404" y="533">
+				<path name="database-modeling"/>
+			</entity>
+			<entity id="2" name="product" fq-name="`database-modeling`.product" order="1" x="1036" y="595">
+				<path name="database-modeling"/>
+			</entity>
+			<entity id="3" name="region" fq-name="`database-modeling`.region" order="2" x="407" y="378">
+				<path name="database-modeling"/>
+			</entity>
+			<entity id="4" name="sales" fq-name="`database-modeling`.sales" order="3" x="736" y="570">
+				<path name="database-modeling"/>
+			</entity>
+		</data-source>
+	</entities>
+	<relations>
+		<relation name="sales_ibfk_1" fq-name="`database-modeling`.sales.sales_ibfk_1" type="fk" pk-ref="1" fk-ref="4"/>
+		<relation name="sales_ibfk_2" fq-name="`database-modeling`.sales.sales_ibfk_2" type="fk" pk-ref="2" fk-ref="4"/>
+		<relation name="customer_ibfk_1" fq-name="`database-modeling`.customer.customer_ibfk_1" type="fk" pk-ref="3" fk-ref="1"/>
+	</relations>
+</diagram>
