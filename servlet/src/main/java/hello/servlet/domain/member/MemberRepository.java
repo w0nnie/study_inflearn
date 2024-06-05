@@ -10,9 +10,12 @@ public class MemberRepository {
     private Map<Long, Member> store = new HashMap<>();
     private long sequence = 0L;
 
-    private static final MemberRepository instance = new MemberRepository();
+    private static MemberRepository instance;
 
     public static MemberRepository getInstance() {
+        if (instance == null) {
+            instance = new MemberRepository();
+        }
         return instance;
     }
 
@@ -35,5 +38,9 @@ public class MemberRepository {
 
     public void clearStore() {
         store.clear();
+    }
+
+    public static void main(String[] args) {
+
     }
 }
