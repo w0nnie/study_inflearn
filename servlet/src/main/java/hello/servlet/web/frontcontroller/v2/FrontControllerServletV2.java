@@ -17,19 +17,19 @@ import java.util.Map;
 
 @WebServlet(name = "frontControllerServletV2", urlPatterns = "/front-controller/v2/*")
 public class FrontControllerServletV2 extends HttpServlet {
-    private Map<String, ControllerV2> controllerV1Map = new HashMap<>();
+    private Map<String, ControllerV2> controllerV2Map = new HashMap<>();
 
     public FrontControllerServletV2() {
-        controllerV1Map.put("/front-controller/v2/members/new-form", new MemberFormControllerV2());
-        controllerV1Map.put("/front-controller/v2/members/save", new MemberSaveControllerV2());
-        controllerV1Map.put("/front-controller/v2/members", new MemberListControllerV2());
+        controllerV2Map.put("/front-controller/v2/members/new-form", new MemberFormControllerV2());
+        controllerV2Map.put("/front-controller/v2/members/save", new MemberSaveControllerV2());
+        controllerV2Map.put("/front-controller/v2/members", new MemberListControllerV2());
     }
 
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String url = request.getRequestURI();
-        ControllerV2 controllerV2 = controllerV1Map.get(url);
+        ControllerV2 controllerV2 = controllerV2Map.get(url);
 
         if (controllerV2 == null) {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
