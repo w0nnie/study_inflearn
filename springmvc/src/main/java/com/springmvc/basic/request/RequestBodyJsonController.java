@@ -1,4 +1,4 @@
-package com.springmvc.basic.requestmapping;
+package com.springmvc.basic.request;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.springmvc.basic.HelloData;
