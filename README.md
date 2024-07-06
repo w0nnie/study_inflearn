@@ -16,7 +16,11 @@
 
 - ****생각하는 데이터베이스모델링****
 
-## 4️⃣ servlet
+## 4️⃣ SpringMVC_Part1
 
-- ****spring MVC - 백엔드 웹 개발 핵심기술 섹션 2****
+- ****spring MVC - 백엔드 웹 개발 핵심기술****
+
+## 5️⃣ SpringMVC_Part2
+
+- ****spring MVC - 백엔드 웹 개발 활용 기술****
 
