@@ -21,8 +21,19 @@ import java.util.Map;
 @RequestMapping("/basic")
 public class BasicController {
 
+    @GetMapping("/block")
+    public String block(Model model) {
+        addUsers(model);
+        return "basic/block";
+    }
+
     @GetMapping("/condition")
     public String condition(Model model) {
+        addUsers(model);
+        return "basic/condition";
+    }
+
+    void addUsers(Model model) {
         List<User> list = new ArrayList<>();
 
         list.add(new User("userA", 10));
@@ -30,19 +41,11 @@ public class BasicController {
         list.add(new User("userC", 30));
 
         model.addAttribute("users", list);
-
-        return "basic/condition";
     }
 
     @GetMapping("/each")
     public String each(Model model) {
-        List<User> list = new ArrayList<>();
-
-        list.add(new User("userA", 10));
-        list.add(new User("userB", 20));
-        list.add(new User("userC", 30));
-
-        model.addAttribute("users", list);
+        addUsers(model);
         return "basic/each";
     }
 
