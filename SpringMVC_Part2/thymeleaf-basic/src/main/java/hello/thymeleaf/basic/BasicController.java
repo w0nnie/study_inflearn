@@ -21,6 +21,13 @@ import java.util.Map;
 @RequestMapping("/basic")
 public class BasicController {
 
+    @GetMapping("javascript")
+    public String javascript(Model model) {
+        model.addAttribute("user", new User("userA", 10));
+        addUsers(model);
+        return "basic/javascript";
+    }
+
     @GetMapping("/block")
     public String block(Model model) {
         addUsers(model);
