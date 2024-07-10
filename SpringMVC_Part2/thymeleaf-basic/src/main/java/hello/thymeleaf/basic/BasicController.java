@@ -21,6 +21,19 @@ import java.util.Map;
 @RequestMapping("/basic")
 public class BasicController {
 
+    @GetMapping("/condition")
+    public String condition(Model model) {
+        List<User> list = new ArrayList<>();
+
+        list.add(new User("userA", 10));
+        list.add(new User("userB", 20));
+        list.add(new User("userC", 30));
+
+        model.addAttribute("users", list);
+
+        return "basic/condition";
+    }
+
     @GetMapping("/each")
     public String each(Model model) {
         List<User> list = new ArrayList<>();
@@ -32,6 +45,7 @@ public class BasicController {
         model.addAttribute("users", list);
         return "basic/each";
     }
+
     @GetMapping("/attribute")
     public String attribute() {
         return "basic/attribute";
