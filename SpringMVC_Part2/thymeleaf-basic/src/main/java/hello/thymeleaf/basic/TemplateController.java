@@ -18,4 +18,9 @@ public class TemplateController {
     public String layout() {
         return "template/fragment/layoutMain";
     }
+
+    @GetMapping("/layoutExtend")
+    public String layoutExtends() {
+        return "template/layoutExtend/layoutExtendMain";
+    }
 }
