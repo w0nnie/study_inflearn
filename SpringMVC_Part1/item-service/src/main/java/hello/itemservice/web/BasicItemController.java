@@ -34,7 +34,7 @@ public class BasicItemController {
     }
 
     @GetMapping("{itemId}")
-    public String itemDetail(@PathVariable Long itemId, Model model) {
+    public String itemDetail(@PathVariable("itemId") Long itemId, Model model) {
         Item item = itemRepository.findById(itemId);
         model.addAttribute("item", item);
         return "basic/item";

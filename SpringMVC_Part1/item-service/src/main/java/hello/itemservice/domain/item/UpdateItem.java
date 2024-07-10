@@ -9,6 +9,9 @@ public class UpdateItem {
     private Integer price;
     private Integer quantity;
 
+    public UpdateItem() {
+    }
+
     public UpdateItem(String itemName, Integer price, Integer quantity) {
         this.itemName = itemName;
         this.price = price;
