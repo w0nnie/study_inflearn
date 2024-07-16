@@ -41,6 +41,19 @@
             </div>
         </div>
 
+        <!-- multi checkbox -->
+        <div>
+            <div>등록 지역</div>
+            <div>
+                <div th:each="rigion : ${regions}" class="form-check form-check-inline">
+                    <input type="checkbox" th:field="*{regions}" th:value="${rigion.key}" class="form-check-input">
+                    <label th:for="${#ids.prev('regions')}"
+                           th:text="${rigion.value}" class="form-check-label"></label>
+                </div>
+            </div>
+        </div>
+
+
         <hr class="my-4">
 
         <div class="row">
