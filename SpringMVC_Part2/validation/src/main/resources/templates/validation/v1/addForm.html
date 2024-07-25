@@ -8,6 +8,10 @@
         .container {
             max-width: 560px;
         }
+        .field-error {
+            border-color: #dc3545;
+            color: #dc3545;
+        }
     </style>
 </head>
 <body>
@@ -25,15 +29,29 @@
     <form action="item.html" th:action th:object="${item}" method="post">
         <div>
             <label for="itemName" th:text="#{label.item.itemName}">상품명</label>
-            <input type="text" id="itemName" th:field="*{itemName}" class="form-control" placeholder="이름을 입력하세요">
+            <input type="text" id="itemName" th:field="*{itemName}"
+                   th:class="${errors?.containsKey('nameError')} ? 'form-control field-error' : 'form-control'" class="form-control" placeholder="이름을 입력하세요">
+            <div class="field-error" th:if="${errors?.containsKey('nameError')}"
+                 th:text="${errors.get('nameError')}">
+                상품명 오류
+            </div>
         </div>
         <div>
             <label for="price" th:text="#{label.item.price}">가격</label>
-            <input type="text" id="price" th:field="*{price}" class="form-control" placeholder="가격을 입력하세요">
+            <input type="text" id="price" th:field="*{price}"
+                   th:class="${errors?.containsKey('priceError')} ? 'form-control field-error' : 'form-control'" class="form-control" placeholder="가격을 입력하세요">
+            <div class="field-error" th:if="${errors?.containsKey('priceError')}"
+                 th:text="${errors.get('priceError')}">
+                가격 오류
+            </div>
         </div>
         <div>
             <label for="quantity" th:text="#{label.item.quantity}">수량</label>
-            <input type="text" id="quantity" th:field="*{quantity}" class="form-control" placeholder="수량을 입력하세요">
+            <input type="text" id="quantity" th:field="*{quantity}" th:class="${errors?.containsKey('quantityError')} ? 'form-control field-error' : 'form-control'" class="form-control" placeholder="수량을 입력하세요">
+            <div class="field-error" th:if="${errors?.containsKey('quantityError')}"
+                 th:text="${errors.get('quantityError')}">
+                가격 오류
+            </div>
         </div>
 
         <hr class="my-4">

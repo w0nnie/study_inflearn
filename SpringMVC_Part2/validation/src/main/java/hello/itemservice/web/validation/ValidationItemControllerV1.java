@@ -57,9 +57,11 @@ public class ValidationItemControllerV1 {
             errors.put("quantityError", "수량은 1 ~ 10000 사이");
         }
 
-        if (item.getQuantity() * item.getPrice() < 10000) {
+        if (item.getPrice() != null && item.getQuantity() != null) {
             int resultPrice = item.getQuantity() * item.getPrice();
-            errors.put("globalError", "가격 * 수량은 10000 이상 현재 가격: " + resultPrice);
+            if(resultPrice < 10000){
+                errors.put("globalError", "가격 * 수량은 10000 이상 현재 가격: " + resultPrice);
+            }
         }
 
         if (!errors.isEmpty()) {
