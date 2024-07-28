@@ -44,7 +44,22 @@ public class ValidationItemControllerV2 {
     }
 
     @PostMapping("/add")
-    public String addItem(@ModelAttribute Item item, RedirectAttributes redirectAttributes, BindingResult bindingResult, Model model) {
+    public String addItem(@ModelAttribute Item item, RedirectAttributes redirectAttributes, BindingResult bindingResult) {
+
+        bindingResult = validation(item, bindingResult);
+
+        if (bindingResult.hasErrors()) {
+            log.info("errors={}", bindingResult);
+            return "validation/v2/addForm";
+        }
+
+        Item savedItem = itemRepository.save(item);
+        redirectAttributes.addAttribute("itemId", savedItem.getId());
+        redirectAttributes.addAttribute("status", true);
+        return "redirect:/validation/v2/items/{itemId}";
+    }
+
+    private BindingResult validation(Item item, BindingResult bindingResult) {
 
         if (!StringUtils.hasText(item.getItemName())) {
             bindingResult.addError(new FieldError("item", "itemName", "상품 이름은 필수입 니다."));
@@ -57,20 +72,14 @@ public class ValidationItemControllerV2 {
             bindingResult.addError(new FieldError("item", "quantity", "수량은 최대 9,999 까지 허용합니다."));
         }
 
-        if (item.getQuantity() * item.getPrice() < 10000) {
+        if (item.getPrice() != null && item.getQuantity() != null) {
             int resultPrice = item.getQuantity() * item.getPrice();
-            bindingResult.addError(new ObjectError("item", "가격 * 수량의 합은 10,000원 이상이어야 합니다. 현재 값 = " + resultPrice));
+            if(resultPrice < 10000) {
+                bindingResult.addError(new ObjectError("item", "가격 * 수량의 합은 10,000원 이상이어야 합니다. 현재 값 = " + resultPrice));
+            }
         }
 
-        if (bindingResult.hasErrors()) {
-            log.info("errors={}", bindingResult);
-            return "validation/v2/addForm";
-        }
-
-        Item savedItem = itemRepository.save(item);
-        redirectAttributes.addAttribute("itemId", savedItem.getId());
-        redirectAttributes.addAttribute("status", true);
-        return "redirect:/validation/v2/items/{itemId}";
+        return bindingResult;
     }
 
     @GetMapping("/{itemId}/edit")
