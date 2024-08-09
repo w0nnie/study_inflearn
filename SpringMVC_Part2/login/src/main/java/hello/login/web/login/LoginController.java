@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -30,7 +32,7 @@ public class LoginController {
     }
 
     @PostMapping
-    public String login(@Validated @ModelAttribute("loginForm") LoginForm form, BindingResult bindingResult) {
+    public String login(@Validated @ModelAttribute("loginForm") LoginForm form, BindingResult bindingResult, HttpServletResponse response) {
 
         if (bindingResult.hasErrors()) {
             return "members/loginForm";
@@ -42,7 +44,10 @@ public class LoginController {
             return "members/loginForm";
         }
 
-            log.info("login = {}", login.get());
+        log.info("login = {}", login.get());
+        Cookie cookie = new Cookie("memberId", login.get().getLoginId());
+        cookie.setMaxAge(100);
+        response.addCookie(cookie);
         return "redirect:/";
     }
 }
