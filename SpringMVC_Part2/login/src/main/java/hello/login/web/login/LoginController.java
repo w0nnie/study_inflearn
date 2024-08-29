@@ -7,10 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -52,7 +49,7 @@ public class LoginController {
         return "redirect:/";
     }
 
-    @PostMapping("/login")
+//    @PostMapping("/login")
     public String loginV2(@Validated @ModelAttribute("loginForm") LoginForm form, BindingResult bindingResult, HttpServletRequest request) {
 
         if (bindingResult.hasErrors()) {
@@ -72,6 +69,29 @@ public class LoginController {
 
         return "redirect:/";
     }
+
+    @PostMapping("/login")
+    public String loginV3(@Validated @ModelAttribute("loginForm") LoginForm form, BindingResult bindingResult,
+                          @RequestParam(defaultValue = "/") String redirectURL, HttpServletRequest request) {
+
+        if (bindingResult.hasErrors()) {
+            return "login/loginForm";
+        }
+
+        Optional<Member> login = loginService.login(form);
+
+        if (!login.isPresent()) {
+            log.info("login fail");
+            bindingResult.reject("loginFail", "아이디 또는 비밀번호가 맞지 않습니다");
+            return "login/loginForm";
+        }
+
+        HttpSession session = request.getSession();
+        session.setAttribute(SessionConst.LOGIN_MEMBER, login.get());
+
+        return "redirect:" + redirectURL;
+    }
+
 
     public String logOut(HttpServletResponse response) {
 
