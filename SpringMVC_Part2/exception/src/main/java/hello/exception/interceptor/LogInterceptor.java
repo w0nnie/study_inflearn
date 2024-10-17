@@ -16,21 +16,14 @@ public class LogInterceptor implements HandlerInterceptor {
     public static final String LOG_ID = "logId";
 
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse
+            response, Object handler) throws Exception {
         String requestURI = request.getRequestURI();
-
         String uuid = UUID.randomUUID().toString();
         request.setAttribute(LOG_ID, uuid);
-
-        //@RequestMapping: HandlerMethod
-        //정적 리소스: ResourceHttpRequestHandler
-        if (handler instanceof HandlerMethod) {
-            HandlerMethod hm = (HandlerMethod) handler; //호출할 컨트롤러 메서드의 모든정보가 포함되어 있다.
-        }
-
-        log.info("REQUEST [{}][{}][{}]", uuid, requestURI, handler);
-        return true; //false 진행X
+        log.info("REQUEST [{}][{}][{}][{}]", uuid, request.getDispatcherType(),
+                requestURI, handler);
+        return true;
     }
 
     @Override
