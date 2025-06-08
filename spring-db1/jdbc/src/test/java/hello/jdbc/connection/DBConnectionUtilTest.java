@@ -1,9 +1,10 @@
 package hello.jdbc.connection;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.sql.Connection;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 class DBConnectionUtilTest {
 
@@ -11,6 +12,6 @@ class DBConnectionUtilTest {
     void getConnection() {
 
         Connection connection = DBConnectionUtil.getConnection();
-        Assertions.assertThat(connection).isNotNull();
+        assertThat(connection).isNotNull();
     }
 }
